@@ -1,15 +1,28 @@
 public class App {
-
     public static void main(String[] args) {
-        Navegador nav = new Navegador();
+        EditorTexto editor = new EditorTexto();
 
-        nav.navegar("AntonIA");
-        nav.navegar("El rincon del Mono");
-        nav.navegar("Estaban's");
-        nav.navegar("Meller Blue");
-        nav.mirarHistorial();
-        nav.retroceder();
-        nav.retroceder();
-        nav.mirarHistorial();
+        System.out.println("=== Prueba del Editor de Texto ===");
+        
+        editor.realizarCambio("Primer texto");
+        System.out.println("Texto actual: " + editor.getTextoActual());
+        
+        editor.realizarCambio("Segundo texto");
+        System.out.println("Texto actual: " + editor.getTextoActual());
+        
+        editor.realizarCambio("Tercer texto");
+        System.out.println("Texto actual: " + editor.getTextoActual());
+
+        System.out.println("\n=== Deshaciendo cambios ===");
+        
+        if (editor.deshacer()) {
+            System.out.println("Deshacer #1 - Texto actual: " + editor.getTextoActual());
+        }
+        
+        if (editor.deshacer()) {
+            System.out.println("Deshacer #2 - Texto actual: " + editor.getTextoActual());
+        }
+
+        System.out.println("\nCambios en el historial: " + editor.getCantidadCambios());
     }
 }
