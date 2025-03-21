@@ -29,6 +29,42 @@ public class ListaSimplementeEnlazada<T> {
         tamanio++;
     }
 
+    public void agregarAntes(T referencia, T dato) {
+        if (inicial == null) return; 
+        if (inicial.getDato().equals(referencia)) {
+            agregarInicio(dato);
+            return;
+        }
+
+        Nodo<T> actual = inicial;
+        while (actual.getSiguiente() != null) {
+            if (actual.getSiguiente().getDato().equals(referencia)) {
+                Nodo<T> nuevoNodo = new Nodo<>(dato);
+                nuevoNodo.setSiguiente(actual.getSiguiente());
+                actual.setSiguiente(nuevoNodo);
+                tamanio++;
+                return;
+            }
+            actual = actual.getSiguiente();
+        }
+    }
+
+    public void agregarDespues(T referencia, T dato) {
+        if (inicial == null) return;
+
+        Nodo<T> actual = inicial;
+        while (actual != null) {
+            if (actual.getDato().equals(referencia)) {
+                Nodo<T> nuevoNodo = new Nodo<>(dato);
+                nuevoNodo.setSiguiente(actual.getSiguiente());
+                actual.setSiguiente(nuevoNodo);
+                tamanio++;
+                return;
+            }
+            actual = actual.getSiguiente();
+        }
+    }
+
     public void eliminar(T dato){
         if(inicial == null) return;
 
