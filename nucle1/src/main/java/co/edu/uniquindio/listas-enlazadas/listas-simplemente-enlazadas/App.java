@@ -9,6 +9,12 @@ public class App {
         miLista.agregarFinal(30);
         miLista.agregarFinal(40);
         System.out.println(miLista.mostrar());
+
+        miLista.agregarAntes(30, 25);
+        miLista.agregarDespues(10, 15);
+        System.out.println(miLista.mostrar());
+
+        System.out.println("-----------------");
         
         ListaSimplementeEnlazada<String> miLista2 = new ListaSimplementeEnlazada<>();
 
@@ -18,6 +24,10 @@ public class App {
 
         miLista2.agregarFinal("holaa");
         miLista2.agregarFinal("adio");
+        System.out.println(miLista2.mostrar());
+
+        miLista2.agregarAntes("holaa", "medio");
+        miLista2.agregarDespues("sara", "despues");
         System.out.println(miLista2.mostrar());
 
         miLista2.eliminar("sarita");
