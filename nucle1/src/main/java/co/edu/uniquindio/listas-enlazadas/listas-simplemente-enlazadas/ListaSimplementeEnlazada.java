@@ -22,6 +22,10 @@ public class ListaSimplementeEnlazada<T> {
             inicial = nuevoNodo;
             tamanio++;
             return;
+        } else if(inicial.getSiguiente() == null) {
+            inicial.setSiguiente(nuevoNodo);
+            tamanio++;
+            return;
         }
 
         if(inicial.getSiguiente()  != null) {
@@ -39,11 +43,11 @@ public class ListaSimplementeEnlazada<T> {
     public void eliminar(T dato){
         if(inicial == null) return;
 
-        if(inicial.getDato() == dato && inicial.getSiguiente() == null) {
+        if(inicial.getDato().equals(dato) && inicial.getSiguiente() == null) {
             inicial = null;
             tamanio--;
             return;
-        } else if(inicial.getDato() == dato) {
+        } else if(inicial.getDato().equals(dato)) {
             inicial = inicial.getSiguiente();
             tamanio--;
             return;
@@ -51,8 +55,8 @@ public class ListaSimplementeEnlazada<T> {
 
         Nodo nodoRecorrer = inicial;
 
-        while(nodoRecorrer.getSiguiente() != null ) {
-            if(nodoRecorrer.getSiguiente().getDato() == dato){
+        while(nodoRecorrer.getSiguiente() != null) {
+            if(nodoRecorrer.getSiguiente().getDato().equals(dato)){
                 nodoRecorrer.setSiguiente(nodoRecorrer.getSiguiente().getSiguiente());
                 tamanio--;
                 break;
@@ -66,7 +70,7 @@ public class ListaSimplementeEnlazada<T> {
         Nodo<T> recorrerNodo = inicial;
 
         while(recorrerNodo != null) {
-            if(recorrerNodo.getDato() == dato){
+            if(recorrerNodo.getDato().equals(dato)){
                 return true;
             }else {
                 recorrerNodo = recorrerNodo.getSiguiente();
@@ -81,7 +85,7 @@ public class ListaSimplementeEnlazada<T> {
         int contador = 0;
 
         while(recorrerNodo != null) {
-            if(recorrerNodo.getDato() == dato){
+            if(recorrerNodo.getDato().equals(dato)){
                 return contador;
             }else{
                 recorrerNodo = recorrerNodo.getSiguiente();
