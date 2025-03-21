@@ -15,29 +15,18 @@ public class ListaSimplementeEnlazada<T> {
         tamanio++;
     }
 
-    public void agregarFinal(T dato){
+    public void agregarFinal(T dato) {
         Nodo<T> nuevoNodo = new Nodo<>(dato);
-
-        if(inicial == null) {
+        if (inicial == null) {
             inicial = nuevoNodo;
-            tamanio++;
-            return;
-        } else if(inicial.getSiguiente() == null) {
-            inicial.setSiguiente(nuevoNodo);
-            tamanio++;
-            return;
-        }
-
-        if(inicial.getSiguiente()  != null) {
-            Nodo nodoRecorrer = inicial.getSiguiente();
-
-            while(nodoRecorrer.getSiguiente() != null) {
+        } else {
+            Nodo<T> nodoRecorrer = inicial;
+            while (nodoRecorrer.getSiguiente() != null) {
                 nodoRecorrer = nodoRecorrer.getSiguiente();
             }
-
             nodoRecorrer.setSiguiente(nuevoNodo);
-            tamanio++;
         }
+        tamanio++;
     }
 
     public void eliminar(T dato){
@@ -59,7 +48,7 @@ public class ListaSimplementeEnlazada<T> {
             if(nodoRecorrer.getSiguiente().getDato().equals(dato)){
                 nodoRecorrer.setSiguiente(nodoRecorrer.getSiguiente().getSiguiente());
                 tamanio--;
-                break;
+                return;
             }else {
                 nodoRecorrer = nodoRecorrer.getSiguiente();
             }
@@ -96,20 +85,19 @@ public class ListaSimplementeEnlazada<T> {
         return -1;
     }
 
-    public String mostrar(){
+    public String mostrar() {
         Nodo<T> nodoRecorrer = inicial;
-        String cadena = "";
-
+        StringBuilder cadena = new StringBuilder();
+    
         while (nodoRecorrer != null) {
-            if(nodoRecorrer.getSiguiente() != null) {
-                cadena += nodoRecorrer.getDato() + " -> ";
-                nodoRecorrer = nodoRecorrer.getSiguiente();
-            }else{
-                cadena += nodoRecorrer.getDato();
-                nodoRecorrer = nodoRecorrer.getSiguiente();
+            cadena.append(nodoRecorrer.getDato());
+            if (nodoRecorrer.getSiguiente() != null) {
+                cadena.append(" -> ");
             }
+            nodoRecorrer = nodoRecorrer.getSiguiente();
         }
-
-        return cadena;
+    
+        return cadena.toString();
     }
+
 }
