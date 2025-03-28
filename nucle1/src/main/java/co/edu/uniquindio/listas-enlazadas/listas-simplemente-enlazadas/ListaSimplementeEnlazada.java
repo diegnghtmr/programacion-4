@@ -1,4 +1,4 @@
-public class ListaSimplementeEnlazada<T> {
+public class ListaSimplementeEnlazada<T extends Comparable<T>> {
     private Nodo inicial;
     private int tamanio;
 
@@ -121,10 +121,38 @@ public class ListaSimplementeEnlazada<T> {
         return -1;
     }
 
+    public void ordenar() {
+        if (inicial == null || inicial.getSiguiente() == null) {
+            return;
+        }
+
+        boolean cambio;
+        Nodo<T> nodoFinal = null;
+
+        do {
+            cambio = false;
+            Nodo<T> actual = inicial;
+            
+            while (actual.getSiguiente() != nodoFinal) {
+                Nodo<T> siguiente = actual.getSiguiente();
+
+                if (actual.getDato().compareTo(siguiente.getDato()) > 0) {
+                    T temp = actual.getDato();
+                    actual.setDato(siguiente.getDato());
+                    siguiente.setDato(temp);
+                    cambio = true;
+                }
+                actual = actual.getSiguiente();
+            }
+            nodoFinal = actual;
+        }
+        while (cambio);
+    }
+
     public String mostrar() {
         Nodo<T> nodoRecorrer = inicial;
         StringBuilder cadena = new StringBuilder();
-    
+
         while (nodoRecorrer != null) {
             cadena.append(nodoRecorrer.getDato());
             if (nodoRecorrer.getSiguiente() != null) {
@@ -132,7 +160,7 @@ public class ListaSimplementeEnlazada<T> {
             }
             nodoRecorrer = nodoRecorrer.getSiguiente();
         }
-    
+
         return cadena.toString();
     }
 
