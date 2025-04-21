@@ -164,4 +164,8 @@ public class ListaSimplementeEnlazada<T extends Comparable<T>> {
         return cadena.toString();
     }
 
+    public Nodo<T> getInicial(){
+        return inicial;
+    }
+
 }
